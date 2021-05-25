@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  web:
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile.master
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+      - "8072:8072"
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./odoo.conf:/etc/odoo/odoo.conf
+      # addons for master
+      - ./vendor/it-projects-llc/saas-addons:/mnt/addons/saas-addons
+      - ./vendor/OCA/contract:/mnt/addons/contract
+      - ./vendor/OCA/queue:/mnt/addons/queue
+      - ./vendor/OCA/server-auth:/mnt/addons/server-auth
+      - ./vendor/OCA/web:/mnt/addons/web  # also required for builds
+      # addons for builds
+      - ./vendor/itpp-labs/access-addons:/mnt/addons/access-addons
+    environment:
+      - ODOO_QUEUE_JOB_HOST=saas.127.0.0.1.nip.io
+
+  db:
+    image: postgres:10
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+    ports:
+      - "5433:5432"
+
+volumes:
+  odoo-web-data:
+  odoo-db-data:
