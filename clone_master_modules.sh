@@ -1,7 +1,11 @@
 #!/usr/bin/env sh
 set -e
 
-ODOO_BRANCH=14.0
+if [ -z "$ODOO_VERSION" ] then
+   echo ODOO_VERSION is not defined
+fi
+
+ODOO_BRANCH="$ODOO_VERSION"
 GIT_PARAMS="-b $ODOO_BRANCH --single-branch"
 
 cd "$(dirname "$0")"
