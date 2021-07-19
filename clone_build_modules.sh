@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-if [ -z "$ODOO_VERSION" ] then
+if [ -z "$ODOO_VERSION" ]; then
    echo ODOO_VERSION is not defined
 fi
 
