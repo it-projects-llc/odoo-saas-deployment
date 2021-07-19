@@ -5,6 +5,11 @@
 Перед тем как начать
 --------------------
 
+- Убеждаемся, что у клиента:
+
+  - помимо основного домена также настроены поддомены
+  - есть настройки smtp сервера
+
 - Устанавливаем git.
   Обычно через команду ``sudo apt-get install git``.
 
@@ -34,6 +39,8 @@
 
   - ``admin_password``.
     Оставлять стандартным не рекомендую.
+
+  - параметры раздела ``queue_job``.
 
 Установка docker и docker-compose
 ---------------------------------
@@ -93,6 +100,9 @@
 
    sudo certbot
 
+Для основного домена сертификат тут-же должен быть доступен.
+Для субдоменов надо настраивать через TXT-записи.
+
 Разворачивание odoo
 -------------------
 
@@ -110,17 +120,27 @@
 
    sudo docker-compose up -d web
 
+Смотрим последние строки из журнала.
+Среди них должно присутствовать следующее:
+
+.. code-block::
+
+   ...INFO...queue_job.jobrunner.runner: starting
+   ...INFO...queue_job.jobrunner.runner: initializing database connections
+   ...INFO...queue_job.jobrunner.runner: queue job runner ready for db <dbname>
+   ...INFO...queue_job.jobrunner.runner: database connections ready
+
 Открываем браузер, заходим в Odoo
 
 - Логин: admin, пароль: admin
 - Основное меню >> Settings >> Activate developer mode
-- Основное меню >> Settings >> Technical >> Configure back-ups
-- Create
-- Параметры по-умолчанию заданы корректно. Save
-- Technical >> Scheduled Actions
-- Открываем Backup scheduler
-- Нажимаем на "Run manually"
-- При успехе в каталоге backups будет создан дамп
-- Переключаем значение поле Active. Должно иметь состояние "Включено"
-
-Готово. Дальше уже устанавливаем нужные модули, настраиваем пользователей и прочее
+- Основное меню >> Settings >> Technical >> Outgoing email servers
+  Записываем данные почтового сервера, которые есть у клиента.
+  Save.
+- Основное меню >> Settings >> General settings >> Customer Account >> Free sign up >> Save
+- Основное меню >> Settings >> Invoicing >> Customer Payments >> Invoice online payments (on) >> Save
+- Основное меню >> website >> configurations >> manage apps >> Refresh
+- Основное меню >> SaaS >> Operators >> Same Instance
+- - DB URLs. Probably http://{db_name}.mycompany.com
+    Если не поддомены не подготовлены, то http://{db_name}.АЙПИ_АДРЕС.nip.io
+- - Master URL. Probably https://mycompany.com

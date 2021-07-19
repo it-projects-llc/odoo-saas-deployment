@@ -22,8 +22,6 @@ services:
       - ./vendor/OCA/web:/mnt/addons/web  # also required for builds
       # addons for builds
       - ./vendor/itpp-labs/access-addons:/mnt/addons/access-addons
-    environment:
-      - ODOO_QUEUE_JOB_HOST=saas.127.0.0.1.nip.io
 
   db:
     image: postgres:10
