@@ -35,6 +35,9 @@ services:
     ports:
       - "5433:5432"
 
+  smtpfake:
+    image: mailhog/mailhog
+
 volumes:
   odoo-web-data:
   odoo-db-data:
