@@ -14,14 +14,7 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./odoo.conf:/etc/odoo/odoo.conf
-      # addons for master
-      - ./vendor/it-projects-llc/saas-addons:/mnt/addons/saas-addons
-      - ./vendor/OCA/contract:/mnt/addons/contract
-      - ./vendor/OCA/queue:/mnt/addons/queue
-      - ./vendor/OCA/server-auth:/mnt/addons/server-auth
-      - ./vendor/OCA/web:/mnt/addons/web  # also required for builds
-      # addons for builds
-      - ./vendor/itpp-labs/access-addons:/mnt/addons/access-addons
+      - ./vendor:/mnt/vendor
 
   db:
     image: postgres:10
