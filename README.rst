@@ -66,7 +66,7 @@
 
 .. code-block:: sh
 
-   sudo apt-get install certbot
+   sudo apt-get install certbot python3-certbot-nginx
 
 Настройка nginx
 ---------------
@@ -140,7 +140,7 @@
 - Логин: admin, пароль: admin
 - Основное меню >> Settings >> Activate developer mode
 - Основное меню >> Settings >> Users and Companies >> Companies >> My Company.
-  Вводим страну и почту.
+  Вводим страну, почту и валюту (валюта автоматом меняется при смене страны).
   Save
 - Основное меню >> Settings >> Technical >> Outgoing email servers
   Записываем данные почтового сервера, которые есть у клиента.
