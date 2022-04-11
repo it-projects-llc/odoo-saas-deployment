@@ -120,7 +120,12 @@
 
    sudo docker-compose up -d web
 
-Смотрим последние строки из журнала.
+Смотрим последние строки из журнала:
+
+.. code-block:: sh
+
+   sudo docker-compose logs web
+
 Среди них должно присутствовать следующее:
 
 .. code-block::
@@ -134,6 +139,9 @@
 
 - Логин: admin, пароль: admin
 - Основное меню >> Settings >> Activate developer mode
+- Основное меню >> Settings >> Users and Companies >> Companies >> My Company.
+  Вводим страну и почту.
+  Save
 - Основное меню >> Settings >> Technical >> Outgoing email servers
   Записываем данные почтового сервера, которые есть у клиента.
   Save.
