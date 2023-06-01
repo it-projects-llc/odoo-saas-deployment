@@ -10,6 +10,6 @@ GIT_PARAMS="-b $ODOO_BRANCH --single-branch"
 
 cd "$(dirname "$0")"
 
-cd vendor/itpp-labs
-git clone $GIT_PARAMS https://github.com/itpp-labs/access-addons.git
+cd vendor/it-projects-llc
+git clone $GIT_PARAMS https://github.com/it-projects-llc/access-addons.git
 cd ../..
